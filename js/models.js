@@ -18,12 +18,13 @@ class Story {
     this.author = author;
     this.url = url;
     this.username = username;
-    this.createdAt = createdAt;
+    this.createdAt = createdAt; //obj's properties don't need to be in order when called if named
   }
 
   /** Parses hostname out of URL and returns it. */
 
   getHostName() {
+    
     // UNIMPLEMENTED: complete this function!
     return "hostname.com";
   }
@@ -68,13 +69,17 @@ class StoryList {
 
   /** Adds story data to API, makes a Story instance, adds it to story list.
    * - user - the current instance of User who will post the story
-   * - obj of {title, author, url}
+   * - obj of {title, author, url} = newStory
    *
    * Returns the new Story instance
    */
 
-  async addStory( /* user, newStory */) {
+  async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
+    //need an await somewhere?
+    const res = await new Story({username: user, ...newStory});
+    
+    return res
   }
 }
 

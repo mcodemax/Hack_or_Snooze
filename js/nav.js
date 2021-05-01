@@ -34,3 +34,10 @@ function updateNavOnLogin() {
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
 }
+
+$navPoster.on("click", navMakePost);
+
+/** Show a new post on the UI */
+function navMakePost(){
+  console.log('hi');
+}
