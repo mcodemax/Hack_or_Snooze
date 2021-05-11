@@ -37,9 +37,10 @@
   <div class="navbar-brand">
     <a class="nav-link" href="#" id="nav-all">Hack or Snooze</a>
   </div>
-  <div class="nav-mid">
+  <!-- <div class="nav-mid">
     <a class="nav-link" href="#" id="nav-post">Submit</a>
-  </div>
+  </div> -->
+  <!-- maybe delete this later -->
   <div class="nav-right">
     <a class="nav-link" href="#" id="nav-login">login/signup</a>
     <a class="nav-link" href="#" id="nav-user-profile"></a>
@@ -49,6 +50,30 @@
 
 <!-- area for stories (all stories, user stories, favorites) -->
 <section class="stories-container container">
+
+  <!-- form for story adding -->
+
+  <form action="#" id="add-story" class="block">
+    <h4>Make a Post</h4>
+    <div class="post-author">
+      <label for="author">Author</label>
+      <input type="text" id="author-post">
+    </div>
+    <div class="post-title">
+      <label for="title-post">title</label>
+      <input type="text" id="title-post">
+    </div>
+    <div class="post-url">
+      <label for="url-post">url</label>
+      <input type="text" id="url-post">
+    </div>
+      
+    <!-- posibly add this div below bac into nav bar -->
+    <div class="">
+      <a class="nav-link" href="#" id="nav-post">Submit</a>
+    </div>
+  </form>
+  
 
   <!-- loading message (removed by JS after stories loaded) -->
   <div id="stories-loading-msg">Loading&hellip;</div>
@@ -99,12 +124,8 @@
   </form>
 </section>
 
-<!-- form for story adding -->
-<section class="">
-  <form action="" id="add-story" class="hidden">
-    <h4>Make a Post</h4>
-  </form>
-</section>
+
+
 
 <!-- Library JS & our JS -->
 <script src="https://unpkg.com/jquery"></script>

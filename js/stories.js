@@ -50,3 +50,10 @@ function putStoriesOnPage() {
 
   $allStoriesList.show();
 }
+
+/** called when users click submit btn to post */
+function postNewStory(){
+  //get data from form
+  //call navMakePost
+  //put new story on UI
+}
