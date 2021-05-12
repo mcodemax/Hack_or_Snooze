@@ -38,8 +38,10 @@ function updateNavOnLogin() {
 $navPoster.on("click", navMakePost);
 
 /** Show a new post on the UI */
-function navMakePost(){
-  console.debug("navMakePost");
-  hidePageComponents();
-  $navPoster.show();
+function navMakePost(evt){
+  console.debug("navMakePost", evt);
+  //hidePageComponents();
+
+  postNewStory(evt);
+  $navPoster.show();//nav-post, shows submit btn w/id nav-post
 }

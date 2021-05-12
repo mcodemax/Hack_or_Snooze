@@ -52,8 +52,21 @@ function putStoriesOnPage() {
 }
 
 /** called when users click submit btn to post */
-function postNewStory(){
+async function postNewStory(evt){//called by navMakePost
+  console.debug("postNewStory", evt);
   //get data from form
-  //call navMakePost
+  const postAuthor = $('#author-post').val();
+  const postUrl = $('#url-post').val()
+  const postTitle = $('#title-post').val()
+  console.log(postAuthor, postUrl, postTitle);
+
+  //call addStory method
+  const story = await storyList.addStory(currentUser,
+    {title: postTitle, author: postAuthor, url: postUrl});
+
+  console.log(story)
+
+  const storyHTML = generateStoryMarkup(story);
+  $allStoriesList.prepend(storyHTML);
   //put new story on UI
 }

@@ -27,7 +27,7 @@ class Story {
     
     //done
     const site = new URL(this.url);//returns obj w/ hostname+pathname
-    return site.hostname;
+    return site.hostname; //use host instead?? 
   }
 }
 
@@ -78,7 +78,7 @@ class StoryList {
   async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
     //need an await somewhere?
-    const res = await new Story({username: user, ...newStory});
+    const res = await new Story({username: user.username, ...newStory});
     
     return res
   }

@@ -8,4 +8,3 @@ const obby = {
 }
 
 let $test = $('#author-post').val() //gets the text val inside an input in form
-console.log()
