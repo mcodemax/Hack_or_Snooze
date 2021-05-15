@@ -199,4 +199,19 @@ class User {
       return null;
     }
   }
+
+  async addFav(loggedin = currentUser){
+    if(!loggedin) return
+
+    
+
+  }
+
+  addFavDOM(){
+
+  }
+
+  async removeFav(){
+
+  }
 }

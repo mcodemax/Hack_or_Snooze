@@ -15,6 +15,8 @@ const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 const $navPoster = $("#nav-post");
 
+const $favorites = $(".fa-star"); //arr like jquery object of all the favs
+
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
  * calling this, individual components can re-show just what they want.
