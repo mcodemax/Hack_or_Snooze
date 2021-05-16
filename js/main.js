@@ -14,6 +14,8 @@ const $navLogin = $("#nav-login");
 const $navUserProfile = $("#nav-user-profile");
 const $navLogOut = $("#nav-logout");
 const $navPoster = $("#nav-post");
+const $navSubmit = $('#nav-submit');
+const $navFavs = $('#nav-favs');
 
 const $favorites = $(".fa-star"); //arr like jquery object of all the favs
 

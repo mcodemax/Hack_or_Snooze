@@ -33,9 +33,21 @@ function updateNavOnLogin() {
   $navLogin.hide();
   $navLogOut.show();
   $navUserProfile.text(`${currentUser.username}`).show();
+
+  //now that user is logged in show favorites/submit bar
+  $navFavs.show();
+  $navSubmit.show();
 }
 
 $navPoster.on("click", navMakePost);
+
+$navSubmit.on("click", function(evt){
+  $('#add-story').toggleClass('hidden')
+
+
+})
+
+
 
 /** Show a new post on the UI */
 function navMakePost(evt){

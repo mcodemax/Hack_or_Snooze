@@ -78,9 +78,20 @@ class StoryList {
   async addStory(user, newStory) {
     // UNIMPLEMENTED: complete this function!
     //need an await somewhere?
-    const res = await new Story({username: user.username, ...newStory});
+    const token = user.loginToken;
+
+    const res = await axios({
+      url: `${BASE_URL}/stories`,
+      method: "POST",
+      data: { token, story: {...newStory} }
+    }); //updates API
+
     
-    return res
+
+    const story = new Story(res.data.story);//makes new story
+    this.stories.unshift(story);
+
+    return story;
   }
 }
 
@@ -200,18 +211,36 @@ class User {
     }
   }
 
-  async addFav(loggedin = currentUser){
-    if(!loggedin) return
-
+  async addFav(story){
     
+    const token = this.loginToken; 
+    
+    // push into currentUser.favorites array
+    this.favorites.push(story);
+    
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "POST",
+      data: { token } //why doesn't { this.loginToken } not work
+    });
 
   }
 
-  addFavDOM(){
+  addremFavDOM(){
 
   }
 
-  async removeFav(){
-
+  async removeFav(story){
+    
+    const token = this.loginToken; 
+    
+    // push into currentUser.favorites array, filter and return only stories NOT of the passed in story
+    this.favorites = this.favorites.filter(ele => ele.storyId !== story.storyId);
+    
+    const response = await axios({
+      url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
+      method: "DELETE",
+      data: { token } //why doesn't { this.loginToken } not work
+    });
   }
 }

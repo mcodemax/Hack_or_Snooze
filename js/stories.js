@@ -81,19 +81,29 @@ async function postNewStory(evt){//called by navMakePost
 }
 
 $allStoriesList.on('click', '.fa-star', async function(evt){
+  if(!currentUser) return //don't star if not logged in
+  
   console.log('star', evt.target.classList.contains('fas'));
+  
   const $star = $(evt.target); //gota use jquery object to use its methods later
   const star = evt.target;
+  console.log(star)
   const hasFavClass = $star.hasClass('fas'); //if favorited return 1, if not return 0
+
+  const $storyid = $star.closest('li').attr('id')
+  const story = storyList.stories.find(ele => ele.storyId === $storyid);
 
   if(hasFavClass){
     $star.toggleClass('fas');
     $star.toggleClass('far');
+    //call removeFav from models.js
+    await currentUser.removeFav(story);
   }else{
     $star.toggleClass('far');
     $star.toggleClass('fas');
+    //call addFav from model.js
+    await currentUser.addFav(story);
   }
 
   
-  //find nearest li, get its id
 });
