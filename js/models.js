@@ -100,14 +100,12 @@ class StoryList {
 
     const token = user.loginToken;
     
-    console.log(...arguments)
-
     
 
     const response = await axios({
       url: `${BASE_URL}/stories/${story.storyId}`,
       method: "DELETE",
-      data: { token: user.loginToken } 
+      data: { token } 
     });
 
     
