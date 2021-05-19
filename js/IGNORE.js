@@ -8,3 +8,10 @@ const obby = {
 }
 
 let $test = $('#author-post').val() //gets the text val inside an input in form
+
+var obj = {
+    poop: 'hi',
+    d(){
+      console.log(this.poop)
+    }
+  }

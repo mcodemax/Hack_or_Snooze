@@ -93,6 +93,25 @@ class StoryList {
 
     return story;
   }
+
+
+  
+  async delPost(story, user){
+
+    const token = user.loginToken;
+    
+    console.log(...arguments)
+
+    const response = await axios({
+      url: `${BASE_URL}/stories/${story.storyId}`,
+      method: "DELETE",
+      data: { token } 
+    });
+
+    this.favorites = this.favorites.filter(ele => ele.storyId !== story.storyId);
+    
+
+  }
 }
 
 
@@ -221,15 +240,12 @@ class User {
     const response = await axios({
       url: `${BASE_URL}/users/${this.username}/favorites/${story.storyId}`,
       method: "POST",
-      data: { token } //why doesn't { this.loginToken } not work
+      data: { token } //why doesn't { this.loginToken } not work; look @ ur axios code; it's in an object...
     });
 
   }
 
-  addremFavDOM(){
-    //loop thru favorites
-    
-  }
+
 
   async removeFav(story){
     

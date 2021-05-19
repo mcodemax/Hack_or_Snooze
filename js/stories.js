@@ -34,10 +34,14 @@ function generateStoryMarkup(story) {
     `;
 
     if( currentUser.favorites.some(e => e.storyId === story.storyId) ){ 
-      star = 'fas' 
+      star = `<span class="star">
+                <i class="fa-star fas"></i>
+              </span>`
     }
     else{
-      star = 'far' 
+      star = `<span class="star">
+                <i class="fa-star far"></i>
+              </span>`
     }
   }
   
@@ -46,9 +50,7 @@ function generateStoryMarkup(story) {
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
-      <span class="star">
-        <i class="fa-star ${star}"></i>
-      </span>
+      ${star}
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
         </a>
@@ -135,6 +137,36 @@ $allStoriesList.on('click', '.fa-star', async function(evt){
     //call addFav from model.js
     await currentUser.addFav(story);
   }
+
+  
+});
+
+$allStoriesList.on('click', '.trash', async function(evt){
+  if(!currentUser) return //don't star if not logged in
+  
+  
+  const $del = $(evt.target); //gota use jquery object to use its methods later
+  const del = evt.target;
+  console.log(del)
+  
+  const $storyid = $del.closest('li').attr('id')
+  const story = storyList.stories.find(ele => ele.storyId === $storyid);
+
+
+  await storyList.delPost(story, currentUser);
+  console.log('poop')
+
+  // if(hasFavClass){
+  //   $star.toggleClass('fas');
+  //   $star.toggleClass('far');
+  //   //call removeFav from models.js
+  //   await currentUser.removeFav(story);
+  // }else{
+  //   $star.toggleClass('far');
+  //   $star.toggleClass('fas');
+  //   //call addFav from model.js
+  //   await currentUser.addFav(story);
+  // }
 
   
 });
