@@ -102,13 +102,17 @@ class StoryList {
     
     console.log(...arguments)
 
+    
+
     const response = await axios({
       url: `${BASE_URL}/stories/${story.storyId}`,
       method: "DELETE",
-      data: { token } 
+      data: { token: user.loginToken } 
     });
 
-    this.favorites = this.favorites.filter(ele => ele.storyId !== story.storyId);
+    
+    user.favorites = user.favorites.filter(ele => ele.storyId !== story.storyId);
+    
     
 
   }
