@@ -29,6 +29,8 @@ $navLogin.on("click", navLoginClick);
 
 function updateNavOnLogin() {
   console.debug("updateNavOnLogin");
+  
+
   $(".main-nav-links").show();
   $navLogin.hide();
   $navLogOut.show();
@@ -42,11 +44,20 @@ function updateNavOnLogin() {
 $navPoster.on("click", navMakePost);
 
 $navSubmit.on("click", function(evt){
-  $('#add-story').toggleClass('hidden')
+  $addStory.toggleClass('hidden')
 
 
 })
 
+
+//shows the user's favorites
+$navFavs.on("click", function(evt){
+  hidePageComponents();
+  $favStoriesList.removeClass('hidden');
+
+  putFavsOnPage();
+  //now loop through favorites and show favorite
+});
 
 
 /** Show a new post on the UI */

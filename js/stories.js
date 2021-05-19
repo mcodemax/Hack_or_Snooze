@@ -23,15 +23,31 @@ function generateStoryMarkup(story) {
   // console.debug("generateStoryMarkup", story);
 
 
-  //const htmlInsert = currentUser ? 
 
-  //if(addFav)
+  let star = '';
+  let trash = '';
+  if(currentUser){
+    trash = `
+      <span class="trash">
+        <i class="fas fa-trash-alt"></i>
+      </span>
+    `;
+
+    if( currentUser.favorites.some(e => e.storyId === story.storyId) ){ 
+      star = 'fas' 
+    }
+    else{
+      star = 'far' 
+    }
+  }
+  
+
 
   const hostName = story.getHostName();
   return $(`
       <li id="${story.storyId}">
       <span class="star">
-        <i class="fa-star far"></i>
+        <i class="fa-star ${star}"></i>
       </span>
         <a href="${story.url}" target="a_blank" class="story-link">
           ${story.title}
@@ -39,9 +55,10 @@ function generateStoryMarkup(story) {
         <small class="story-hostname">(${hostName})</small>
         <small class="story-author">by ${story.author}</small>
         <small class="story-user">posted by ${story.username}</small>
-        <input type="checkbox" class="favorites star" id="fav-${story.storyId}">
+        ${trash}
       </li>
     `);//fa-star class is a star icon, far is empty, fas is filled
+    //put in a delete button
 }
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
@@ -53,6 +70,20 @@ function putStoriesOnPage() {
 
   // loop through all of our stories and generate HTML for them
   for (let story of storyList.stories) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+  }
+
+  $allStoriesList.show();
+}
+
+function putFavsOnPage() {
+  console.debug("putFavsOnPage");
+
+  $allStoriesList.empty();
+
+  // loop through all of our stories and generate HTML for them
+  for (let story of currentUser.favorites) {
     const $story = generateStoryMarkup(story);
     $allStoriesList.append($story);
   }

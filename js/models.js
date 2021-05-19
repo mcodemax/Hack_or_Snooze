@@ -227,7 +227,8 @@ class User {
   }
 
   addremFavDOM(){
-
+    //loop thru favorites
+    
   }
 
   async removeFav(story){

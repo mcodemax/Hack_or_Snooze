@@ -16,8 +16,11 @@ const $navLogOut = $("#nav-logout");
 const $navPoster = $("#nav-post");
 const $navSubmit = $('#nav-submit');
 const $navFavs = $('#nav-favs');
+const $addStory = $('#add-story');
+const $favStoriesList = $('#favorite-stories-list');
 
 const $favorites = $(".fa-star"); //arr like jquery object of all the favs
+const $trash = $('.trash');
 
 /** To make it easier for individual components to show just themselves, this
  * is a useful function that hides pretty much everything on the page. After
