@@ -27,12 +27,13 @@ function generateStoryMarkup(story) {
   let star = '';
   let trash = '';
   if(currentUser){
-    trash = `
-      <span class="trash">
-        <i class="fas fa-trash-alt"></i>
-      </span>
-    `;
-
+    if(currentUser.username === story.username){
+      trash = `
+        <span class="trash">
+          <i class="fas fa-trash-alt"></i>
+        </span>
+      `;
+    }
     if( currentUser.favorites.some(e => e.storyId === story.storyId) ){ 
       star = `<span class="star">
                 <i class="fa-star fas"></i>
@@ -156,6 +157,19 @@ $allStoriesList.on('click', '.trash', async function(evt){
   await storyList.delPost(story, currentUser);
   console.log('poop')
 
+  $allStoriesList.empty();
+
+  // loop through all of our stories and generate HTML for them
+  for (let story of storyList.stories) {
+    const $story = generateStoryMarkup(story);
+    $allStoriesList.append($story);
+    console.log($story)
+  }
+
+  $allStoriesList.show();
+
+  // $allStoriesList.hide();
+  // putStoriesOnPage();
   // if(hasFavClass){
   //   $star.toggleClass('fas');
   //   $star.toggleClass('far');
